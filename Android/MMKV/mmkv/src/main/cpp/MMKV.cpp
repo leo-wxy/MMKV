@@ -69,8 +69,8 @@ enum : bool {
 MMKV::MMKV(
     const std::string &mmapID, int size, MMKVMode mode, string *cryptKey, string *relativePath)
     : m_mmapID(mmapedKVKey(mmapID, relativePath))
-    , m_path(mappedKVPathWithID(m_mmapID, mode, relativePath))
-    , m_crcPath(crcPathWithID(m_mmapID, mode, relativePath))
+    , m_path(mappedKVPathWithID(mmapID, mode, relativePath))
+    , m_crcPath(crcPathWithID(mmapID, mode, relativePath))
     , m_metaFile(m_crcPath, DEFAULT_MMAP_SIZE, (mode & MMKV_ASHMEM) ? MMAP_ASHMEM : MMAP_FILE)
     , m_crypter(nullptr)
     , m_fileLock(m_metaFile.getFd())
